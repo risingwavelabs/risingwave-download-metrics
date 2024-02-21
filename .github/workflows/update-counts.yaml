@@ -35,7 +35,7 @@ jobs:
           cp update_data.py update_data.tmp.py
           git fetch origin data
           git checkout data
-          python3 update_data.tmp.py
+          ./update_data.tmp.py $DATE $OSX_DOWNLOADS $LINUX_DOWNLOADS
           git add counts.json
           git commit --amend --no-edit
           git push -f
