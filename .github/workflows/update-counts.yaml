@@ -30,7 +30,8 @@ jobs:
           echo "Linux Downloads: $LINUX_DOWNLOADS"
           DATE=$(date +'%Y-%m-%d')
           echo "Date: $DATE"
-          git clone -b data --single-branch https://"${{ secrets.GITHUB_TOKEN }}"@github.com/risingwavelabs/risingwave-download-metrics.git
+          git fetch origin data
+          git checkout data
           git add .
           git commit --amend --no-edit
           git push -f
