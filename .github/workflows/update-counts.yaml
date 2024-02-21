@@ -30,6 +30,8 @@ jobs:
           echo "Linux Downloads: $LINUX_DOWNLOADS"
           DATE=$(date +'%Y-%m-%d')
           echo "Date: $DATE"
+          git config --global user.email "noelkwan@risingwave-labs.com"
+          git config --global user.name "Noel Kwan"
           git fetch origin data
           git checkout data
           git add .
