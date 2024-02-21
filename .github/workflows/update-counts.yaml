@@ -15,7 +15,8 @@ jobs:
             https://api.github.com/repos/risingwavelabs/homebrew-risingwave/releases/latest \
             | grep "download_count" \
             | awk '{print $2}' \
-            | sed 's/,//g')
+            | sed 's/,//g' \
+            | paste -sd+ - | bc)
           echo "OSX Downloads: $OSX_DOWNLOADS"
           LINUX_DOWNLOADS=$(curl -L \
             -H "Accept: application/vnd.github+json" \
@@ -23,7 +24,8 @@ jobs:
             https://api.github.com/repos/risingwavelabs/risingwave/releases/latest \
             | grep "download_count" \
             | awk '{print $2}' \
-            | sed 's/,//g')
+            | sed 's/,//g' \
+            | paste -sd+ - | bc)
           echo "Linux Downloads: $LINUX_DOWNLOADS"
           DATE=$(date +'%Y-%m-%d')
           echo "Date: $DATE"
