@@ -22,10 +22,6 @@
     const response = await fetch('https://raw.githubusercontent.com/risingwavelabs/risingwave-download-metrics/data/counts.json');
     return await response.json();
   }
-  async function fetch_mock_data() {
-    const response = await fetch('https://raw.githubusercontent.com/risingwavelabs/risingwave-download-metrics/main/mock_data.json');
-    return await response.json();
-  }
 
   // data schema: [{ date: '2023-01-01', osx_count: 3, linux_count: 1 }, ...]
   function build_chart_data(data) {
