@@ -15,6 +15,11 @@ with open('counts.json') as f:
         "osx_count": osx_count,
         "linux_count": linux_count
     }
+    # Make sure the date is not already in the file
+    for record in data:
+        if record['date'] == date:
+            print(f"Record for {date} already exists")
+            sys.exit(0)
     data.append(new_record)
 
     # Write the updated data back to the file.
