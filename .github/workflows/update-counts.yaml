@@ -34,6 +34,7 @@ jobs:
           git config --global user.name "Noel Kwan"
           git fetch origin data
           git checkout data
+          python3 update_data.py
           git add .
           git commit --amend --no-edit
           git push -f
