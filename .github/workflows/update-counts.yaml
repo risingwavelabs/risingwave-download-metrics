@@ -38,7 +38,7 @@ jobs:
           git checkout data
           ./update_data.tmp.py $DATE $OSX_DOWNLOADS $LINUX_DOWNLOADS
           git add counts.json
-          git commit -m "Update counts for $DATE"
+          git commit -m "Update counts for $DATE" --allow-empty
           git push -f
           git checkout -
           echo "Done"
