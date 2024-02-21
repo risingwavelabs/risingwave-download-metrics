@@ -25,3 +25,5 @@ jobs:
             | awk '{print $2}' \
             | sed 's/,//g')
           echo "Linux Downloads: $LINUX_DOWNLOADS"
+          DATE=$(date +'%Y-%m-%d')
+          echo "Date: $DATE"
