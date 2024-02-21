@@ -55,9 +55,9 @@
   }
 
   async function main() {
-    // const daily_data = await fetch_data();
+    const daily_data = await fetch_data();
     // Uncomment this to use test data instead
-    const daily_data = await test_data();
+    // const daily_data = await test_data();
     const chart_data = build_chart_data(daily_data);
     console.log(chart_data)
     new Chart(document.getElementById('Cumulative Daily Downloads'), {
