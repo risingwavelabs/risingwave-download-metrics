@@ -9,4 +9,4 @@ with open('counts.json') as f:
     data.append({"date": "2022-01-01", "count": 1})
     # Write the updated data back to the file.
     with open('counts.json', 'w') as f:
-        json.dump(data, f, indent=2)
+        json.dump(data, f)
