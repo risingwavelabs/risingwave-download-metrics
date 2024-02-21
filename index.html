@@ -1,23 +1,45 @@
 <div>
-  <canvas id="myChart"></canvas>
+  <canvas id="Daily Downloads"></canvas>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <script>
-  const ctx = document.getElementById('myChart');
+  // Generate 1 year of data, 1 download per day
+  const test_data = () => {
+    let data = []
+    for (let month = 1; month <= 12; month++) {
+      for (let day = 1; day <= 29; day++) {
+        data.push({ date: `2023-${month}-${day}`, count: 1 });
+      }
+    }
+    return data
+  }
+
+  const ctx = document.getElementById('Daily Downloads');
+
+  const data = test_data();
+
+  const aggregated_data = data.reduce((acc, {date, count}) => {
+    const x = acc.length > 0 ? acc[acc.length - 1].count + 1 : 0;
+    return [...acc, { date, count: x }];
+  }, []);
+  console.log(aggregated_data)
 
   new Chart(ctx, {
-    type: 'bar',
+    type: 'line',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Daily Downloads',
+        data: aggregated_data,
         borderWidth: 1
       }]
     },
     options: {
+      parsing: {
+        xAxisKey: 'date',
+        yAxisKey: 'count'
+      },
       scales: {
         y: {
           beginAtZero: true
