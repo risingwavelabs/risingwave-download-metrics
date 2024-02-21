@@ -1,5 +1,6 @@
 name: Get Daily counts
 on: [push]
+# FIXME
 #  schedule:
 #    - cron: '0 0 * * *'
 jobs:
@@ -37,6 +38,7 @@ jobs:
           git checkout data
           ./update_data.tmp.py $DATE $OSX_DOWNLOADS $LINUX_DOWNLOADS
           git add counts.json
+          # FIXME
           git commit --amend --no-edit
           git push -f
           git checkout -
