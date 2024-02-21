@@ -1,0 +1,14 @@
+name: Get Daily counts
+on: [push]
+#  schedule:
+#    - cron: '0 0 * * *'
+jobs:
+  get_count:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get count
+        run: |
+          echo "Count of issues: $(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/issues | jq '. | length')"
+          echo "Count of PRs: $(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/pulls | jq '. | length')"
+          echo "Count of commits: $(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" https://api.github.com/repos/${{ github.repository }}/commits | jq '. | length')"
