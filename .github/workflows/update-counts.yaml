@@ -11,16 +11,16 @@ jobs:
       - name: Get count
         run: |
           set -e
-          RELEASE_INFO=$(curl -L \
+          OSX_INFO=$(curl -L \
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/risingwavelabs/homebrew-risingwave/releases/latest)
-          OSX_DOWNLOADS=$(echo $RELEASE_INFO \
+          OSX_DOWNLOADS=$(echo "$OSX_INFO" \
             | grep "download_count" \
             | awk '{print $2}' \
             | sed 's/,//g' \
             | paste -sd+ - | bc)
-          OSX_TAG=$(echo $RELEASE_INFO \
+          OSX_TAG=$(echo "$OSX_INFO" \
             | grep "tag_name" \
             | awk '{print $2}' \
             | sed 's/,//g' \
@@ -30,12 +30,12 @@ jobs:
             -H "Accept: application/vnd.github+json" \
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/risingwavelabs/risingwave/releases/latest)
-          LINUX_DOWNLOADS=$(echo $LINUX_INFO \
+          LINUX_DOWNLOADS=$(echo "$LINUX_INFO" \
             | grep "download_count" \
             | awk '{print $2}' \
             | sed 's/,//g' \
             | paste -sd+ - | bc)
-          LINUX_TAG=$(echo $LINUX_INFO \
+          LINUX_TAG=$(echo "$LINUX_INFO" \
             | grep "tag_name" \
             | awk '{print $2}' \
             | sed 's/,//g' \
